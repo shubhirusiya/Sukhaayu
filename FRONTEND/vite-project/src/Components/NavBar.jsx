@@ -1,8 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './NavBar.css';
 
 const NavBar = () => {
+
+  const navigateToLogin = useNavigate();
   return (
     <nav className="nav-bar">
       <ul className="nav-list">
@@ -10,7 +12,7 @@ const NavBar = () => {
         <li><Link to="/hospitals">Hospitals</Link></li>
         <li><Link to="/blood-availability">Blood Availability</Link></li>
         <li><Link to="/appointments">Appointments</Link></li>
-        {/* Removed Doctors link */}
+        <button onClick={() => navigateToLogin('./Login')} className="login-button">Login</button>
       </ul>
     </nav>
   );
