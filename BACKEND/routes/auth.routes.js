@@ -5,7 +5,7 @@ import  User  from '../models/user.models.js';
 import { authenticate } from '../middleware/authenticate.middleware.js';
 import { Signup } from '../controllers/Signup.controllers.js';
 import  {FindUser}  from '../controllers/Login.controllers.js';
-import { generateAccessToken } from '../UTILS/generateAccessTokens.utils.js';
+import { generateAccessToken } from '../utils/generateAccessTokens.utils.js';
 export const router = express.Router();
 const saltRounds=10;
 
