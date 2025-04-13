@@ -118,3 +118,10 @@ router.post('/login', async(req, res)=>{
  
    })
 
+
+   router.post('/logout',authenticate, async (req, res) =>{
+    const user = req.user;
+    res.clearCookie("accessToken").json({message: "Logged out successfully"});
+    
+})
+
