@@ -88,7 +88,13 @@ const LandingPage = () => {
           </div>
         </div>
       </div>
-      <div className="footer">
+      <div
+        className="footer"
+        style={{
+          
+          height: '100px', // Decreased height
+        }}
+      >
         <p>&copy; 2023 Sukhayu. All rights reserved.</p>
         <p>Contact us: support@sukhayu.com | +1 234 567 890</p>
         <div className="footer-links">

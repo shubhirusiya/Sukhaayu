@@ -285,11 +285,14 @@
 }
 
 .footer p {
+    background-color:white ;
   margin: 10px 0; /* Add spacing between paragraphs */
   font-weight: 500; /* Slightly bold text */
 }
 
 .footer-links {
+    background-color:white ;
+
   margin-top: 20px;
 }
 
@@ -306,19 +309,20 @@
 }
 
 .footer-about {
-  margin-top: 30px;
+    background-color:white ;
+
   font-size: 1rem; /* Increase font size */
   line-height: 1.8;
   color: rgb(64, 63, 63); /* Ensure text is visible */
 }
 
 .footer-social {
-  margin-top: 30px;
+    background-color:white ;
+
   font-size: 1rem; /* Increase font size */
 }
 
 .footer-social a {
-  margin: 0 10px;
   color: rgb(30, 144, 255); /* Blue color for social links */
   text-decoration: none;
   font-weight: 600; /* Make social links bold */
