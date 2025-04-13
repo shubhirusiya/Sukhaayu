@@ -1,5 +1,15 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f9f9f9;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
 .appointments {
-  max-width: 900px; /* Increased width */
+  width: 300px; /* Increased width */
   margin: 40px auto; /* Added more margin */
   padding: 40px; /* Increased padding */
   border: 1px solid #ccc;
@@ -16,26 +26,37 @@
 
 .appointments-container {
   display: flex;
-  
-  gap: 30px; /* Spacing between the form and the list */
-  margin: 20px; /* Margin around the container */
+  justify-content: space-between; /* Separate the divs */
+  gap: 20px; /* Add spacing between the divs */
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .form-container {
-    width: 1000px;
-    color: #363636;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  flex: 1; /* Allow the form to take up some space */
-  max-width: 400px; /* Limit the width of the form */
+  flex: 1;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.form-container h1 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
 }
 
 .appointments-list {
-    margin-left: 190px;
-    width: 500px;
-  flex: 2; /* Allow the list to take up the remaining unused area */
-  border: 2px solid #ccc;
-  border-radius: 8px;
+  flex: 1;
   padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
   background-color: #f9f9f9;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
@@ -43,11 +64,13 @@
 .appointments-list h2 {
   text-align: center;
   color: #333;
+  margin-bottom: 20px;
 }
 
 .appointments-list ul {
   list-style-type: none;
   padding: 0;
+  margin: 0;
 }
 
 .appointments-list li {
@@ -61,7 +84,10 @@
 }
 
 form {
-    background-color: #f9f9f9;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  background-color: #f9f9f9;
   margin-bottom: 20px;
 }
 
@@ -73,6 +99,7 @@ form label {
   display: block;
   font-weight: bold;
   margin-bottom: 5px;
+  color: #555;
 }
 
 form input {
@@ -80,8 +107,8 @@ form input {
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  background-color: #fff; /* Set background color to white */
-  border: 1px solid #585757; 
+  background-color: #fff; /* Ensure input background is white */
+  font-size: 1rem;
   color: #000; /* Set text color to black */
 }
 
@@ -94,7 +121,7 @@ form button {
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 1rem;
 }
 
 form button:hover {
