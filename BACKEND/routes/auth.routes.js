@@ -1,26 +1,11 @@
 import express, { Router } from 'express';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken'
+import  User  from '../models/user.models.js';
 import { authenticate } from '../middleware/authenticate.middleware.js';
 import { Signup } from '../controllers/Signup.controllers.js';
+import  {FindUser}  from '../controllers/Login.controllers.js';
 import { generateAccessToken } from '../UTILS/generateAccessTokens.utils.js';
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 export const router = express.Router();
 const saltRounds=10;
 
@@ -28,7 +13,10 @@ const saltRounds=10;
 
 router.post('/signup',async(req,res)=>{
     console.log("signup called")
-    const {name,email,password,phoneNumber,role,address}= req.body;
+    console.log(req.body)
+    const {name,email,password,phone,role,address}= req.body;
+
+    
 
    
 
@@ -43,23 +31,14 @@ router.post('/signup',async(req,res)=>{
 
     const hashedPassword = await bcrypt.hash(password,saltRounds);
     
-  
-    
-    
-
-
-
-   
-   
-
-
     try{
 
         
       
         
 
-        await Signup(name,email,hashedPassword,phoneNumber,role,address);
+        await Signup(name,email,hashedPassword,phone,role,address);
+        console.log("user created")
         res.status(201).json({message: 'User created'});
      }
      catch(e)
@@ -72,6 +51,7 @@ router.post('/signup',async(req,res)=>{
 
 router.post('/login', async(req, res)=>{
     console.log("login called")
+    console.log(req.body)
     const {email,password}= req.body;
    
 
@@ -112,4 +92,29 @@ router.post('/login', async(req, res)=>{
         res.status(500).json({error: e.message});
     }
   })
+
+
+  router.get('/me',async(req,res)=>{
+    const accessToken = req.cookies.accessToken;
+    
+ 
+    if(!accessToken)
+    {
+     return res.status(402).json({message: "Unauthorized"});
+    }
+ 
+    const decoded = jwt.verify(accessToken,process.env.SECRET_KEY);
+    console.log(decoded);
+    const user = await User.findById(decoded.id).select('-password');
+    
+    if (!user) {
+     return res.status(404).json({ error: 'User not found' });
+   }
+ 
+  
+ 
+   res.status(200).json(user);
+ 
+ 
+   })
 

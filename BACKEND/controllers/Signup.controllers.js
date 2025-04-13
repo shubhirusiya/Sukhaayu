@@ -17,16 +17,18 @@ export const Signup = async(name,email,password,phoneNumber,role,address)=>{
         }
 
         const user = new User({
-           name:  name,
-           email: email,
+            name:name,
+            email:email,
             password:password,
-            phone: phoneNumber,
+            phone:phoneNumber,
             address:address,
-            role: role || 'patient',
+            role:role || 'patient',
            
         })
 
         await user.save()
+
+        console.log("User created successfully")
 
         return {status:'success', message:'User registered successfully'}
 

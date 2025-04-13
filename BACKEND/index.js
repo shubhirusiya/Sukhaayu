@@ -1,7 +1,7 @@
 import express, { urlencoded } from 'express';
 import connectDB from './database/db.js';
 import dotenv from 'dotenv';
-// import {router} from './ROUTES/auth.routes.js'
+import {router} from './routes/auth.routes.js'
 // import { router2 } from './ROUTES/features.routes.js';
 import path from "path";
 import cookieParser from 'cookie-parser';
@@ -23,7 +23,7 @@ connectDB();
 
 
 
-// app.use('/auth', router);
+app.use('/auth', router);
 // app.use('/features',router2);
 
 

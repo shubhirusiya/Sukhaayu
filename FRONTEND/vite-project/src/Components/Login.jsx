@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import styled from 'styled-components';
+import api from '../../axiosConfig';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -21,8 +22,16 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/api/auth/login', formData);
-      localStorage.setItem('token', response.data.token);
+      const response = await api.post('auth/login', formData);
+      const user = await api.get('/auth/me')
+      const safeUserData = {
+        id: user.data.id,
+        name: user.data.name,
+        email: user.data.email
+       
+       
+      };
+      localStorage.setItem('user', JSON.stringify(safeUserData));
       alert('Login successful!');
       navigate('/');
     } catch (error) {

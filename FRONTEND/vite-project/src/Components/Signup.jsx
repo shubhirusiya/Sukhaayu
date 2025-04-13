@@ -2,17 +2,17 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import styled from 'styled-components';
+import api from '../../axiosConfig';
 
 const Signup = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
+    name:'',
     email: '',
     phone: '',
     address: '',
-    password: '',
-    role: 'patient'
+    password:'',
+    role:'patient'
   });
 
   const handleChange = (e) => {
@@ -25,13 +25,20 @@ const Signup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const { name, email, phone, address, password, role } = formData;
+   
     try {
-      const response = await axios.post('http://localhost:5000/api/auth/register', formData);
+       
+      const response = await api.post('/auth/signup',formData);
+      if (response.status === 201) {
+
       alert('Registration successful! Please login.');
       navigate('/login');
-    } catch (error) {
-      alert(error.response?.data?.message || 'Registration failed. Please try again.');
-      console.error('Registration error:', error);
+      }
+    } 
+    catch (error) {
+    alert(error.response?.data?.message || 'Registration failed. Please try again.');
+    console.error('Registration error:', error);
     }
   };
 
@@ -56,7 +63,7 @@ const Signup = () => {
           ))}
         </div>
 
-        {['firstName', 'email', 'phone', 'address', 'password'].map(field => (
+        {['name', 'email', 'phone', 'address', 'password'].map(field => (
           <label key={field}>
             <input
               required
@@ -73,8 +80,8 @@ const Signup = () => {
               pattern={field === 'phone' ? "[+]{1}[0-9]{11,14}" : undefined}
             />
             <span>
-              {field === 'firstName' ? 'Firstname' : 
-               field === 'phone' ? 'Phone number' : 
+              {field === 'name' ? 'name' : 
+               field === 'phone' ? 'phone' : 
                field.charAt(0).toUpperCase() + field.slice(1)}
             </span>
           </label>

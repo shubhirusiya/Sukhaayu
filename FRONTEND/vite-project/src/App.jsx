@@ -6,6 +6,8 @@ import Appointments from './Components/Appointments.jsx';
 import LandingPage from './Components/LandingPage.jsx';
 import NavBar from './Components/NavBar.jsx';
 import './App.css';
+import Login from './Components/Login.jsx';
+import Signup from './Components/Signup.jsx';
 
 const App = () => {
   return (
@@ -17,6 +19,8 @@ const App = () => {
           <Route path="/hospitals" element={<Hospitals />} />
           <Route path="/blood-availability" element={<BloodAvailability />} />
           <Route path="/appointments" element={<Appointments />} />
+          <Route path="/login" element={<Login></Login>} />
+          <Route path="/signup" element={<Signup></Signup>} />
         </Routes>
       </div>
     </Router>
