@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import '../css/LandingPage.css'; // Updated path to the CSS file
-import heroimage from '../assets/hero-image.jpg'; // Updated the image import to use a relative path
-import blooddonation from '../assets/blooddonation.avif'; // Import the blood donation image
-import appointmentimg from '../assets/appointments.png'; // Import the appointment image
-import hospitalimg from '../assets/hospitals.webp'; // Import the hospital image
-import doctorimg from '../assets/doctor.jpg'; // Import the doctor image
+import { useNavigate } from 'react-router-dom'; // Add this import
+import '../css/LandingPage.css';
+import heroimage from '../assets/hero-image.jpg';
+import blooddonation from '../assets/blooddonation.avif';
+import appointmentimg from '../assets/appointments.png';
+import hospitalimg from '../assets/hospitals.webp';
+import doctorimg from '../assets/doctor.jpg';
 
 const LandingPage = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const navigate = useNavigate(); // Initialize the navigate function
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,6 +23,11 @@ const LandingPage = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Function to handle navigation
+  const handleLearnMoreClick = (path) => {
+    navigate(path);
+  };
 
   return (
     <div className={`landing-page ${isScrolled ? 'shrink' : ''}`}>
@@ -38,17 +45,32 @@ const LandingPage = () => {
           <div className="content-box">
             <img src={blooddonation} alt="Blood Donation" />
             Find Blood Availability near you
-            <button className="content-button">Learn More</button>
+            <button 
+              className="content-button"
+              onClick={() => handleLearnMoreClick('/blood-availability')}
+            >
+              Learn More
+            </button>
           </div>
           <div className="content-box">
             <img src={appointmentimg} alt="Appointments" />
             Get online appointments with doctors
-            <button className="content-button">Learn More</button>
+            <button 
+              className="content-button"
+              onClick={() => handleLearnMoreClick('/appointments')}
+            >
+              Learn More
+            </button>
           </div>
           <div className="content-box">
             <img src={hospitalimg} alt="Hospitals" />
             Find nearby hospitals
-            <button className="content-button">Learn More</button>
+            <button 
+              className="content-button"
+              onClick={() => handleLearnMoreClick('/hospitals')}
+            >
+              Learn More
+            </button>
           </div>
         </div>
       </div>
