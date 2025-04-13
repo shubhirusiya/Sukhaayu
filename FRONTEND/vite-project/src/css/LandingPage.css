@@ -1,0 +1,55 @@
+.landing-page {
+  position: relative;
+  height: 100vh; /* Full viewport height */
+  width: 100vw; /* Full viewport width */
+  overflow: hidden;
+  background-color: white; /* Changed background color to white */
+}
+
+.landing-hero-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%; /* Full width */
+  height: 25%; /* 25% of the viewport height */
+  object-fit: cover; /* Ensure the image covers the area */
+  z-index: -1; /* Place the image behind the text */
+}
+
+.landing-overlay {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  color: black;
+  z-index: 1;
+}
+
+.landing-main-title {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: black;
+}
+
+.landing-sub-title {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: black;
+}
+
+.landing-button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  color: white;
+  background-color: black;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.landing-button:hover {
+  background-color: #333;
+}
