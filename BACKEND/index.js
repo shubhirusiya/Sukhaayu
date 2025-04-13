@@ -10,6 +10,8 @@ import cors from 'cors'
 const app =express();
 dotenv.config()
 
+const PORT = process.env.PORT || 3000;
+
 
 
 app.use(express.json());
@@ -27,6 +29,6 @@ app.use('/auth', router);
 app.use('/features',router2);
 
 
-app.listen(process.env.PORT,()=>{
+app.listen(PORT,()=>{
     console.log(`CONNECTED TO SERVER ${process.env.PORT}`);
 })
