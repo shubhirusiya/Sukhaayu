@@ -27,7 +27,8 @@ const Login = () => {
       const safeUserData = {
         id: user.data.id,
         name: user.data.name,
-        email: user.data.email
+        email: user.data.email,
+        role:user.data.role
        
        
       };

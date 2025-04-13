@@ -11,6 +11,8 @@ import Signup from './Components/Signup.jsx';
 import Form from './Components/Form.jsx';
 
 const App = () => {
+  const user = localStorage.getItem('user');
+  
   return (
     <Router>
       <div>
@@ -22,7 +24,10 @@ const App = () => {
           <Route path="/appointments" element={<Appointments />} />
           <Route path="/login" element={<Login></Login>} />
           <Route path="/signup" element={<Signup></Signup>} />
-          <Route path="/form" element={<Form />} /> {/* Add Form route */}
+          <Route path="/form" element={<Form />} /> 
+            
+          
+          
         </Routes>
       </div>
     </Router>

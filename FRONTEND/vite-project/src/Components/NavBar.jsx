@@ -6,6 +6,9 @@ import api from '../../axiosConfig';
 const NavBar = () => {
 
   const user = localStorage.getItem('user');
+  console.log (user)
+  const role = user ? JSON.parse(user).role : ''; // Parse the user data from local storage to get the role
+  console.log(role)
   const handleLogout = () => {
     api.post('/auth/logout') // Call the logout API endpoint
     .then(() => {
@@ -16,6 +19,8 @@ const NavBar = () => {
   }
 
 
+
+
   return (
     <nav className="nav-bar">
       <div className="nav-content">
@@ -24,6 +29,7 @@ const NavBar = () => {
           <li><Link to="/hospitals">Hospitals</Link></li>
           <li><Link to="/blood-availability">Blood Availability</Link></li>
           <li><Link to="/appointments">Appointments</Link></li>
+          {(role!=null && role === 'admin')?(<li><Link to="/form">Register hospital</Link></li>):("")}
           <li>{!user?(<Link to="/login">Login</Link>):(<button onClick={handleLogout}>Logout</button>)}</li>
 
          

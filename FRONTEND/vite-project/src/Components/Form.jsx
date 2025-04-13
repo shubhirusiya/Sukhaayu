@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import  '../css/Form.css'; 
+import api from '../../axiosConfig';
+import { useNavigate } from 'react-router-dom';
 
 const HospitalForm = ({ onSubmit }) => {
   const [hospitalName, setHospitalName] = useState('');
@@ -16,13 +18,15 @@ const HospitalForm = ({ onSubmit }) => {
     { bloodType: 'O-', quantity: 0 },
   ]);
 
+  const nav = useNavigate();
+
   const handleBloodStockChange = (index, field, value) => {
     const updatedBloodStock = [...bloodStock];
     updatedBloodStock[index][field] = value;
     setBloodStock(updatedBloodStock);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = {
       hospitalName,
@@ -30,7 +34,37 @@ const HospitalForm = ({ onSubmit }) => {
       contactNumber,
       bloodStock,
     };
-    onSubmit(formData);
+
+    try
+    {
+
+      const response = await api.post('/features/addHospital',formData);
+      if (response.status === 201) {
+
+        alert('Hospital added successfully!');
+        console.log(response.data);
+      nav('/')
+
+
+
+
+      }
+     
+
+      // Optionally, you can reset the form or redirect the user
+
+
+
+
+
+    }
+    catch (error) {
+      console.error('Error adding hospital:', error);
+      alert('Failed to add hospital. Please try again.');
+    }
+
+
+   
   };
 
   return (

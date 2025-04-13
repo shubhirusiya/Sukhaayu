@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
-
+import api from '../../axiosConfig';
 // Animation definitions
 const fadeIn = keyframes`
   from { opacity: 0; transform: translateY(-10px); }
@@ -137,54 +137,78 @@ const BackButton = styled.button`
   }
 `;
 
-// Mock data with availability
-const mockBloodData = {
-  "A+": [
-    { hospital: "City General Hospital", units: 15 },
-    { hospital: "Regional Medical Center", units: 8 }
-  ],
-  "A-": [
-    { hospital: "City General Hospital", units: 5 }
-  ],
-  "B+": [
-    { hospital: "Regional Medical Center", units: 12 }
-  ],
-  "B-": [
-    { hospital: "University Hospital", units: 9 }
-  ],
-  "AB+": [
-    { hospital: "Specialty Care Hospital", units: 3 }
-  ],
-  "AB-": [], // No availability
-  "O+": [
-    { hospital: "City General Hospital", units: 25 },
-    { hospital: "Regional Medical Center", units: 18 }
-  ],
-  "O-": [] // No availability
-};
+const blood =[
+  "A+",
+  "A-",
+  "B+",
+  "B-",
+  "AB+",
+  "AB-",
+  "O+",
+  "O-"
+
+]
+
+
+
 
 const BloodAvailability = () => {
   const [bloodType, setBloodType] = useState('');
-  const [availability, setAvailability] = useState(null);
+  const [availability, setAvailability] = useState([]);
   const [loading, setLoading] = useState(false);
   const [showForm, setShowForm] = useState(true);
 
-  const checkAvailability = () => {
-    if (!bloodType) return;
-    
+  useEffect(() => {
+    console.log("Updated availability:", availability);
+  }, [availability]);
+
+  const checkAvailability = async () => {
+
     setLoading(true);
-    
-    // Simulate API call
-    setTimeout(() => {
-      setAvailability(mockBloodData[bloodType] || []);
+    try{
+
+      const response =  await api.get(`/features/hospitals/blood/${bloodType}`);
+     
+      if (response.status === 200) {
+        console.log(response.data)
+
+        const hospitals = response.data.map(hospital => ({
+          hospital: hospital.hospitalName,
+          units: hospital.bloodStock[0].quantity ,// Assuming the first blood type matches the selected one
+          address: hospital.address,
+          contactNumber: hospital.contactNumber,
+        }));
+        console.log(hospitals)
+        
+        setAvailability(hospitals);
+        console.log(availability)
+       
+        setShowForm(false); // Hide the form after checking availability
+      }
+      setLoading(false);
+
+     
+      
+
+
+
+
+    }
+    catch (error) {
+      console.error('Error fetching blood availability:', error);
       setLoading(false);
       setShowForm(false);
-    }, 800);
+      setAvailability([]); // Set to empty array if error occurs
+    }
+
+
+
+   
   };
 
   const resetForm = () => {
     setShowForm(true);
-    setAvailability(null);
+    setAvailability([]);
     setBloodType('');
   };
 
@@ -200,7 +224,7 @@ const BloodAvailability = () => {
             onChange={(e) => setBloodType(e.target.value)}
           >
             <option value="">Select a blood type</option>
-            {Object.keys(mockBloodData).map(type => (
+            {blood.map(type => (
               <option key={type} value={type}>{type}</option>
             ))}
           </Select>
@@ -226,6 +250,7 @@ const BloodAvailability = () => {
                     <UnitsAvailable>
                       {item.units} <UnitText>units available</UnitText>
                     </UnitsAvailable>
+                    <p>{item.address}</p>
                     <p style={{ color: '#7f8c8d' }}>
                       {item.units > 10 ? 'Good stock' : 'Limited availability'}
                     </p>

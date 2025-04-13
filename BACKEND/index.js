@@ -2,7 +2,7 @@ import express, { urlencoded } from 'express';
 import connectDB from './database/db.js';
 import dotenv from 'dotenv';
 import {router} from './routes/auth.routes.js'
-// import { router2 } from './ROUTES/features.routes.js';
+import { router2 } from './routes/features.routes.js';
 import path from "path";
 import cookieParser from 'cookie-parser';
 import cors from 'cors'
@@ -24,7 +24,7 @@ connectDB();
 
 
 app.use('/auth', router);
-// app.use('/features',router2);
+app.use('/features',router2);
 
 
 app.listen(process.env.PORT,()=>{
