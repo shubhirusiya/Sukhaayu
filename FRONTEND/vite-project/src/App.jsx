@@ -8,6 +8,7 @@ import NavBar from './Components/NavBar.jsx';
 import './App.css';
 import Login from './Components/Login.jsx';
 import Signup from './Components/Signup.jsx';
+import Form from './Components/Form.jsx';
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
           <Route path="/appointments" element={<Appointments />} />
           <Route path="/login" element={<Login></Login>} />
           <Route path="/signup" element={<Signup></Signup>} />
+          <Route path="/form" element={<Form />} /> {/* Add Form route */}
         </Routes>
       </div>
     </Router>

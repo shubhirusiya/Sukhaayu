@@ -40,6 +40,10 @@ const Login = () => {
     }
   };
 
+  const navigateToForm = () => {
+    navigate('/form'); // Navigate to the Form page
+  };
+
   return (
     <StyledWrapper>
       <form className="form" onSubmit={handleSubmit}>
@@ -62,11 +66,14 @@ const Login = () => {
         ))}
 
         <button type="submit" className="submit">Submit</button>
-        <p className="signin">
-          Don't have an account? <br />
-          <Link to="/signup">Sign Up</Link>
-        </p>
       </form>
+      <button onClick={navigateToForm} className="external-submit">
+        Login as Admin
+      </button>
+      <p className="signin">
+        Don't have an account? <br />
+        <Link to="/signup">Sign Up</Link>
+      </p>
     </StyledWrapper>
   );
 };
