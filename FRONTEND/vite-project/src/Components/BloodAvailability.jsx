@@ -14,7 +14,7 @@ const scaleIn = keyframes`
 
 // Styled components
 const Container = styled.div`
-  font-family: 'Arial, sans-serif';
+  font-family:roboto, sans-serif;
   max-width: 800px;
   margin: 2rem auto;
   padding: 2rem;
@@ -193,7 +193,7 @@ const BloodAvailability = () => {
       <Title>Blood Availability Checker</Title>
       
       <FormContainer hidden={!showForm}>
-        <label>
+        <label style={{marginRight: '1vw' }}>
           Select Blood Type
           <Select
             value={bloodType}
