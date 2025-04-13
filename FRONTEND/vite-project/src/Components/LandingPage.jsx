@@ -75,9 +75,9 @@ const LandingPage = () => {
         </div>
       </div>
       <div className={`mission ${isScrolled ? 'shrink' : ''}`}>
-        <h2>Our Mission</h2>
+        <h2 style={{marginLeft:'2.3vw'}}>Our Mission</h2>
         <div className="mission-content">
-          <p>
+          <p style={{marginLeft:'2vw'}}>
             Our mission is to provide a comprehensive platform that connects patients with healthcare providers, 
             ensuring easy access to medical services and information.
             We aim to empower individuals to take control of their health by offering resources for blood donation,
