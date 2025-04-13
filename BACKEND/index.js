@@ -17,7 +17,7 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 app.use(urlencoded())
 app.use(cookieParser())
-app.use(cors({origin: 'http://localhost:5173',
+app.use(cors({origin: 'https://techies-amuhacks4-0-5.onrender.com',
     credentials:true}));
 connectDB();
 
