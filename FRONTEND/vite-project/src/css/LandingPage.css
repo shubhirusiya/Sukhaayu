@@ -2,8 +2,15 @@
   position: relative;
   height: 100vh; /* Full viewport height */
   width: 100vw; /* Full viewport width */
-  overflow: hidden;
+  
   background-color: white; /* Changed background color to white */
+}
+
+.hero {
+  position: relative;
+  height: 700px; /* Match the height of the hero image */
+  width: 100%; /* Full width */
+  z-index: 0; /* Ensure it is below the content */
 }
 
 .landing-hero-image {
@@ -11,45 +18,97 @@
   top: 0;
   left: 0;
   width: 100%; /* Full width */
-  height: 25%; /* 25% of the viewport height */
+  height: 100%; /* Match the height of the hero container */
   object-fit: cover; /* Ensure the image covers the area */
-  z-index: -1; /* Place the image behind the text */
+  z-index: -1; /* Ensure the image is behind the hero content */
+  filter: brightness(80%); /* Darken the image by 10% */
 }
 
 .landing-overlay {
   position: absolute;
-  top: 10%;
-  left: 50%;
-  transform: translateX(-50%);
-  text-align: center;
-  color: black;
-  z-index: 1;
+  bottom: 10%; /* Align text at the bottom */
+  left: 5%; /* Align text to the left */
+  text-align: left;
+  color: white; /* Ensure text is visible on the image */
+  z-index: 1; /* Ensure text is above the image */
 }
 
 .landing-main-title {
   font-size: 3rem;
   font-weight: bold;
   margin-bottom: 0.5rem;
-  color: black;
+  color: rgb(247, 241, 241); /* Ensure text color is readable */
 }
 
 .landing-sub-title {
   font-size: 1.5rem;
   margin-bottom: 1rem;
-  color: black;
+  color: rgb(251, 248, 248); /* Ensure text color is readable */
 }
 
 .landing-button {
   padding: 10px 20px;
   font-size: 1rem;
   color: white;
-  background-color: black;
-  border: none;
-  border-radius: 5px;
+  background-color: transparent; /* Transparent background for the button */
+  border: 2px solid white; /* Add a white border for visibility */
+  border-radius: 20px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .landing-button:hover {
-  background-color: #333;
+  background-color: white; /* Add a white background on hover */
+  color: black; /* Change text color to black on hover */
+}
+
+.content {
+  width: 100%;
+  height: 600px;
+  
+
+  position: relative; /* Ensure it stays in the normal document flow */
+  z-index: 1; /* Ensure it appears above the hero */
+  background-color: #f9f9f9; /* Add a background color to make it visible */
+  color: rgb(64, 63, 63);
+  margin: 10px;
+  h2{
+    font-size: 60px;
+    font-weight: 100;
+  }
+ /* Push the content below the hero section */
+}
+
+.contentboxes{
+    display: flex;
+}
+.content-box {
+  margin-left: 80px;
+  margin-right: 80px;
+  display: flex;
+  flex-direction: column; /* Stack image and text vertically */
+  justify-content: flex-start;
+  align-items: center;
+  width: 330px;
+  height: 400px;
+  border: 1px solid black;
+  position: relative;
+  color: rgb(16, 15, 15);
+  overflow: hidden; /* Prevent content overflow */
+  font-size: 20px;
+}
+
+.content-box img {
+  width: 100%; /* Full width of the container */
+  height: 60%; /* Set height to 60% */
+  object-fit: cover; /* Ensure the image covers the area proportionally */
+  position: relative; /* Remove absolute positioning */
+}
+
+.content-box p {
+  margin-top: 10px; /* Add spacing between the image and text */
+  padding: 10px;
+  text-align: center;
+  font-size: 1rem;
+  color: rgb(16, 15, 15); /* Ensure text is visible */
 }
